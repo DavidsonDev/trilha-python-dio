@@ -131,6 +131,9 @@ def opcao():
             emprestimo()
 
         elif opcao == '8':
+            print('==='.center(10))
+            print('------ Até logo ------'.center(45))
+            print('==='.center(90))
             quit()
             break
         else:
@@ -257,10 +260,11 @@ def opcao2():
 def usuario_ativos():
     global cadastrar_usuario, contas
     while True:
-
-        print('[1] Consultar todos os usuários ativos')
+        print('=============================================')
+        print('\n[1] Consultar todos os usuários ativos')
         print('[2] Consultar um cpf')
         print('[3] Sair')
+        print('\n_____________________________________________')
         opt = input('\nSelecione uma das opções')
 
         if opt == '1':
@@ -276,7 +280,9 @@ def usuario_ativos():
 #Todos usuários
 def ativos_all():
     if not cadastrar_usuario:
+        print('----------------------------')
         print('Não existe usuários ativos')
+        print('-----------------------------')
         return
 
     for usuario in cadastrar_usuario:
@@ -289,7 +295,9 @@ def ativos_all():
                 encontrou_conta = True
         
         if not encontrou_conta:
+            print('\n-------------------------------------')
             print('Este usuário ainda não possui conta')
+            print('\n--------------------------------------')
         print('---')
 
 
@@ -297,7 +305,10 @@ def ativos_all():
 def ativos():
     global cadastrar_usuario, contas
 
+    print('\n=========================================================')
     consultar_usuario = int(input('Digite o cpf do usuário que deseja consultar: '))
+    print('\n__________________________________________________________')
+
     for usuario in cadastrar_usuario:
         if usuario['cpf'] == consultar_usuario:
             print(usuario)
@@ -358,7 +369,9 @@ def conta_nova():
     global contas, cadastrar_usuario
     usuario_encontrado = False
 
+    print('\n=========================================================')
     dig_cpf = int(input('Qual cpf será cadastrado na nova conta: '))
+    print('\n__________________________________________________________')
 
     for usuario in cadastrar_usuario:
         if usuario['cpf'] == dig_cpf:
@@ -390,8 +403,8 @@ def conta_nova():
 def emprestimo():
     global idade_emprestimo, SERASA
 
-    idade = int(input('Qual a sua idade? '))
-    resposta = input('Voce tem alguma restrição no SERASA s/n? ')
+    idade = int(input('\nQual a sua idade? '))
+    resposta = input('\nVoce tem alguma restrição no SERASA s/n? ')
 
     SERASA = True if resposta.lower() == 's' else False
 
@@ -401,7 +414,9 @@ def emprestimo():
         opcao2()
     
     elif idade >= idade_emprestimo and SERASA == True:
+        print('\n========================================================')
         print('Nesse momento não temos condições disponíveis para você')
+        print('\n=========================================================')
         opcao2()
 
     elif idade < idade_emprestimo:
