@@ -2,15 +2,13 @@
 
 saldo = 0
 limite = 500
-extrato = ""
+extrato = ''
 numero_saques = 0
 LIMITE_SAQUES = 3
 idade_emprestimo = 18
 SERASA = False
 cadastrar_usuario = []
 contas = []
-
-
 
 
 
@@ -24,7 +22,6 @@ def home1(txt):
     print('-' * 50)
 
 home1('Seja bem vindo, digite o seu cpf para continuar')
-
 
 
 
@@ -46,8 +43,6 @@ def digite_cpf():
             print('\n', 'cpf invalido')
 
 digite_cpf()
-
-
 
 
 
@@ -89,11 +84,10 @@ senha_digitada()
 
 
 
-
 #-------------------------------------------------------opcao-------------------------------------------------------#
 #Menu de opções
 
-def opcao():
+def opt():
     while True:
 
         print('__________'.center(70))
@@ -116,7 +110,7 @@ def opcao():
             sacar()
 
         elif opcao == '3':
-            extrato()
+            ver_extrato()
         
         elif opcao == '4':
             usuario_ativos()
@@ -143,7 +137,6 @@ def opcao():
 
 
 
-
 #---------------------------------------------------funçõesdeopcao---------------------------------------------------#
 #Depositar
 
@@ -155,10 +148,12 @@ def depositar():
     if valor > 0:
         saldo += valor
         extrato += f'Depósito: R$ {valor:.2f}\n'
+        print('=====================================')
+        print('Depósito realizado com sucesso')
+        ver_extrato()
 
     else:
         print('Valor para deposito invalido')
-
 
 
 
@@ -168,12 +163,16 @@ def depositar():
 #Sacar
 
 def sacar():
-    global saldo, limite, numero_saques
+    global saldo, limite, numero_saques, extrato
 
+    print('=============================================')
     valor = float(input('Informe um valor para saque: '))
+    print('=============================================')
 
     if numero_saques >= LIMITE_SAQUES:
-        print('Você atingiu o número de saques')
+        print('=============================================')
+        print('Você atingiu o número de saques'.center(20))
+        print('=============================================')
     
     elif valor > saldo:
         print('\n')
@@ -186,12 +185,13 @@ def sacar():
         print('\n')
 
     else:
-        valor -= saldo
+        saldo -= valor
         numero_saques += 1
+        extrato += f'Saque: R$ {valor:.2f}\n'
         print('\n''-------------------------------------------')
-        print(f'Saque realizado com sucesso. R${valor:.2f}')
+        print(f'\nSaque realizado com sucesso. R${valor:.2f}')
+        print(f'\nSaldo atual. R${saldo:.2f}')
         print('\n''-------------------------------------------')
-
 
 
 
@@ -200,8 +200,8 @@ def sacar():
 #---------------------------------------------------funçõesdeopcao---------------------------------------------------#
 #Extrato
 
-def extrato():
-    global saldo, extrato
+def ver_extrato():
+    global saldo, extrato, numero_saques
 
     if not extrato:
         print('\n=============================Extrato=============================')
@@ -216,7 +216,6 @@ def extrato():
         print('\n')
         print('=======================================')
         opcao2()
-
 
 
 
@@ -237,7 +236,7 @@ def opcao2():
         opcao2 = input('Digite uma das opções: ')
 
         if opcao2 == '1':
-            opcao()
+            opt()
     
         elif opcao2 == '2':
             print('\n================================================\n')
@@ -247,7 +246,6 @@ def opcao2():
 
         else:
             print('\nOpção invalida')
-
 
 
 
@@ -265,7 +263,7 @@ def usuario_ativos():
         print('[2] Consultar um cpf')
         print('[3] Sair')
         print('\n_____________________________________________')
-        opt = input('\nSelecione uma das opções')
+        opt = input('\nSelecione uma das opções ')
 
         if opt == '1':
             ativos_all()
@@ -277,7 +275,11 @@ def usuario_ativos():
             return
 
 
+#================================================================================================================
+
+
 #Todos usuários
+
 def ativos_all():
     if not cadastrar_usuario:
         print('----------------------------')
@@ -301,7 +303,11 @@ def ativos_all():
         print('---')
 
 
+#===================================================================================================================
+
+
 #usuario especifico
+
 def ativos():
     global cadastrar_usuario, contas
 
@@ -325,7 +331,6 @@ def ativos():
 
 
 
-
 #--------------------------------------------------funçõesdeopcao--------------------------------------------------#
 #Novo usuario
 
@@ -334,6 +339,7 @@ def novo_usuario():
     
     cpf = int(input('Digite somente o número do seu cpf: '))
     nome = input('Qual é o seu nome completo: ')
+    data_nc = input('Qual a sua data de nascimento dia/mês/ano - xx/xx/xxxx: ')
     rua_av = input('Qual o nome da rua ou av que você mora: ')
     numero = int(input('Número: '))
     bairro = input('Bairro: ')
@@ -356,7 +362,6 @@ def novo_usuario():
     print('------------------------------------------')
 
     #O endereço é uma string com o formato: logradouro, nro - bairro - cidade/sigla estado. 
-
 
 
 
@@ -396,7 +401,6 @@ def conta_nova():
 
 
 
-
 #--------------------------------------------------funçõesdeopcao--------------------------------------------------#
 #Empréstimo
 
@@ -428,9 +432,7 @@ def emprestimo():
 
 
 
-
-
 #-------------------------------------------------------opcao-------------------------------------------------------#
 #Menu de opções
 #Fechamento do menu de opções
-opcao()
+opt()
