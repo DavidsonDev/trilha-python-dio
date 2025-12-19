@@ -1,22 +1,33 @@
-# Desafio: API Bancária Assíncrona com FastAPI
+======== Desafio: API Bancária Assíncrona com FastAPI ======== 
 
-Neste desafio, você irá projetar e implementar uma API RESTful assíncrona usando FastAPI para gerenciar operações bancárias de depósitos e saques, vinculadas a contas correntes. Este desafio irá lhe proporcionar a experiência de construir uma aplicação backend moderna e eficiente que utiliza autenticação JWT e práticas recomendadas de design de APIs.
+Este projeto consiste em uma API RESTful assíncrona desenvolvida com FastAPI para gerenciar operações bancárias de depósitos e saques, vinculadas a contas correntes. Ele utiliza autenticação via JWT e segue boas práticas de desenvolvimento de APIs modernas.
 
-## Objetivos e Funcionalidades
+🔹 Funcionalidades
 
-O objetivo deste desafio é desenvolver uma API com as seguintes funcionalidades:
+- Cadastro de contas: Criação de contas bancárias com saldo inicial.
 
-- **Cadastro de Transações:** Permita o cadastro de transações bancárias, como depósitos e saques.
-- **Exibição de Extrato:** Implemente um endpoint para exibir o extrato de uma conta, mostrando todas as transações realizadas.
-- **Autenticação com JWT:** Utilize JWT (JSON Web Tokens) para garantir que apenas usuários autenticados possam acessar os endpoints que exigem autenticação.
+- Cadastro de transações: Registro de depósitos e saques vinculados a contas.
 
-## Requisitos Técnicos
+- Exibição de extrato: Consulta de todas as transações de uma conta específica.
 
-Para a realização deste desafio, você deve atender aos seguintes requisitos técnicos:
+- Validação de saldo: Impede saques que excedam o saldo disponível.
 
-- **FastAPI:** Utilize FastAPI como framework para criar sua API. Aproveite os recursos assíncronos do framework para lidar com operações de I/O de forma eficiente.
-- **Modelagem de Dados:** Crie modelos de dados adequados para representar contas correntes e transações. Garanta que as transações estão relacionadas a uma conta corrente, e que contas possam ter múltiplas transações.
-- **Validação das operações:** Não permita depósitos e saques com valores negativos, valide se o usuário possui saldo para realizar o saque.
-- **Segurança:** Implemente autenticação usando JWT para proteger os endpoints que necessitam de acesso autenticado.
-- **Documentação com OpenAPI:**  Certifique-se de que sua API esteja bem documentada, incluindo descrições adequad
-as para cada endpoint, parâmetros e modelos de dados.
+- Autenticação JWT: Apenas usuários autenticados podem acessar endpoints protegidos.
+
+- Documentação automática: API documentada via OpenAPI (Swagger).
+
+🔹 Tecnologias Utilizadas
+
+Python 3.11
+
+- FastAPI (Framework web assíncrono)
+
+- Databases + SQLAlchemy (Banco de dados e ORM)
+
+- SQLite (banco de dados para desenvolvimento)
+
+- Pydantic (Validação e schemas)
+
+- Uvicorn (Servidor ASGI)
+
+- JWT (Autenticação de usuário)
